@@ -10,7 +10,7 @@ import { Product, AddToCart } from '../../shared/types';
 export default function Home() {
 
 	const addToCart: AddToCart
-	= () => {
+	= (product: Product) => {
 		console.log("triggered")
 	}
 

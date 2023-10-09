@@ -1,4 +1,4 @@
-import type {Product, GeneratedProduct} from "../shared/types"
+import type {Product, GeneratedProduct, ProductLabel} from "../shared/types"
 
 const prefixes: string[] = [
 	"Harsh",
@@ -50,7 +50,11 @@ const suffixes: string[] = [
 ]
 
 const generateLabel = () => {
-	return getRandomItem(prefixes) + " " + getRandomItem(productNames) + getRandomItem(suffixes)
+	const label = {} as ProductLabel;
+	label.prefix = getRandomItem(prefixes) + " ";
+	label.name = getRandomItem(productNames);
+	label.suffix = getRandomItem(suffixes);
+	return label;
 }
 
 const categories: string[] = [

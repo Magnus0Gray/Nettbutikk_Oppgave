@@ -1,20 +1,12 @@
-import { type Product } from "../shared/types"
+import { type Product, getFullLabel } from "../shared/types"
 import { useState } from "react";
 
 
 export default function ShoppingCart() {
     const [cartActive, setCartActive] = useState(false)
 
-    const cartInit: Product[] = [
-        {
-            id: "",
-            label: "",
-            price: 0,
-            category: "",
-            currency: ""
-        }
-    ]
-    const [cartContent, setCartContent] = useState([...cartInit])
+    const cartInit: Product[] = [];
+    const [cartContent, setCartContent] = useState([...cartInit]);
 
 
 
@@ -44,7 +36,7 @@ export default function ShoppingCart() {
                     ?   cartContent.map((item, index) => (
 
                         <li key={index}>
-                            <span className="title">{item.label}</span>
+                            <span className="title">{getFullLabel(item)}</span>
                             <span className="price">{item.price},-</span>
                             {total += item.price}
                         </li>
