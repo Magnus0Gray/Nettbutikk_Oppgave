@@ -7,7 +7,7 @@ describe("Validate products", () => {
 		const products: Product[] = generateProducts(count);
 		expect(products.length).toBe(count);
 	})
-	it("all items should have prefix, label and suffix", () => {
+	it("should have prefix, label and suffix", () => {
 		const stringsToFind = 3;
 		const product: Product = generateProducts(1)[0];
 		let stringsFound = 0;
@@ -18,4 +18,9 @@ describe("Validate products", () => {
 		}
 		expect(stringsFound).toBe(stringsToFind);
 	})
+	it("should have price above 0", () => {
+		const product: Product = generateProducts(1)[0];
+
+		expect(product.price).not.toBeLessThan(1);
+		})
 })
