@@ -19,7 +19,7 @@ export default function ProductsView(addToCart:{addToCart:AddToCart}) {
 		<section className="products-view">
 			{
 				products?.map((product) => (
-					<ProductCard key={product.id} id={product.id} label={product.label} price={product.price} currency={product.currency} category={product.category} addToCart={addToCart} />
+					<ProductCard key={product.id} product={product} onClickHandler={addToCart} />
 			))}
 		</section>
 
