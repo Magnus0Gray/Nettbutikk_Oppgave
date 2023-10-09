@@ -105,6 +105,17 @@ export const generatedProduct: GeneratedProduct = {
 	category: () => getRandomCategory()
 }
 
+export function generateAProduct(): Product {
+	const product = {
+		id: generatedProduct.id(),
+		label: generatedProduct.label(),
+		price: generatedProduct.price(),
+		currency: generatedProduct.currency(),
+		category: generatedProduct.category(),
+	}
+	return product;
+}
+
 /*type GenerateProducts = {
 	existingProducts?: Map<string, Product>
 	product: Product
@@ -113,16 +124,8 @@ export const generatedProduct: GeneratedProduct = {
 export const generateProducts = (count: number) => {
 	const products: Product[] = [];
 
-	for (let i = 0; i < count; i++) {
-		const product = {
-			id: generatedProduct.id(),
-			label: generatedProduct.label(),
-			price: generatedProduct.price(),
-			currency: generatedProduct.currency(),
-			category: generatedProduct.category(),
-		}
-		products.push(product);
-	}
+	for (let i = 0; i < count; i++)
+		products.push(generateAProduct());
 
 	//console.log(products);
 	return products;
