@@ -2,7 +2,7 @@
 import { useRef } from "react"
 import Cart from "../components/Cart"
 import Link from "next/link";
-import {useCart } from "../components/Cart"
+import { cartHandle } from "../components/Cart"
 
 export default function Home() {
 	const cartRef = useRef(null);

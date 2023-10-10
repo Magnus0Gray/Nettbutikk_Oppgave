@@ -25,6 +25,7 @@ const CartContext = createContext({});
 const CartProvider = ({ children, value }) => {
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>
 }*/
+export type UseCartHandle = () => void;
 
 export const useCart = () => {
     const cartInit: CartProduct[] = [];
@@ -81,13 +82,17 @@ export const useCart = () => {
         return index;
     }
 
-    return { cartContent, addItem, subtractItem, removeItem}
+    return { cartContent, addItem, subtractItem, removeItem }
 }
 
-const ShoppingCart = forwardRef((props, ref) => {
+export type cartHandle = {
+    modCart: () => void;
+}
+type Props = object;
+
+const ShoppingCart = forwardRef ((props, ref) => {
     const [cartActive, setCartActive] = useState(false)
     const cartRef = useRef(null);
-
     const cartHandler = () => {
         setCartActive(!cartActive)
 
@@ -105,12 +110,12 @@ const ShoppingCart = forwardRef((props, ref) => {
     let total = 0;
 
     useImperativeHandle(ref, () => {
-        return{
+        return {
             useCart() {
-                // @ts-expect-error: Object is possibly 'null'.
                 // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                cartRef.current.useCart();
+                cartRef.current?.useCart();
             }
+
         }
     });
 
