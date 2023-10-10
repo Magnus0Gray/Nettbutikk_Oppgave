@@ -4,32 +4,22 @@
 import Cart from '../../components/Cart';
 import ProductsView from '../../components/ProductsView';
 import '../../css/main.css';
-//import { useState } from "react"
+import { useRef } from "react"
 import { type Product, type AddToCart } from '../../shared/types';
 
 
 export default function Home() {
+	//alternative to custom hook with context
+	//const cartRef = useRef();
 
-	const addToCart: AddToCart
-	= (product: Product) => {
+	const addToCart: AddToCart = function(product: Product){
 		console.log("triggered: ")
 		console.log(product)
 	}
 
 
 	return (
-		<>
-			<header>
-				<h1>Store</h1>
-				<div className="cartContainer">
-					<Cart/>
-				</div>
-			</header>
-
-			<main>
 				<ProductsView addToCart={addToCart} />
-			</main>
-		</>
 	)
 
 }

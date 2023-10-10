@@ -3,7 +3,7 @@ import { Product, AddToCart } from "../shared/types"
 import ProductCard from "./ProductCard"
 import { useState, useEffect } from "react"
 
-export default function ProductsView(addToCart:{addToCart:AddToCart}) {
+export default function ProductsView({addToCart}:{addToCart:AddToCart}) {
 	const [products, setProducts] = useState<Product[]>()
 
 	useEffect(() => {

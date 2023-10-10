@@ -12,6 +12,9 @@ export default function ProductCard(props: ProductCardProps) {
 		console.log(addToCart)
 		//addToCart(props);
 	}*/
+
+	//console.log(props.onClickHandler)
+
 	const { price, category, currency } = props.product;
 	return (
 		<article className="product-card">
@@ -20,7 +23,10 @@ export default function ProductCard(props: ProductCardProps) {
 				<h2>{getFullLabel(props.product)}</h2>
 				<h4 className="price">Price: <br/>
 					{price}{currency}</h4>
-				<button onClick={() => props.onClickHandler}>Add to cart</button>
+				{props.onClickHandler
+					? <button onClick={() => props.onClickHandler?.(props.product)}>Add to cart</button>
+					: <div className="text-red-600">Sold out</div>
+				}
 			</section>
 		</article>
 	)

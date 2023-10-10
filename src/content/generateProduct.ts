@@ -89,7 +89,7 @@ const getRandomItem = <T>(items: T[]) => {
 }
 
 const getRandomPrice = () => {
-	return Math.trunc((Math.random() * 100 * Math.random() * 50))
+	return Math.trunc((Math.random() * 100 * Math.random() * 50)) + 9; //minimum 9
 
 }
 
