@@ -2,22 +2,12 @@
 "use client"
 
 import { type Product, getFullLabel } from "../shared/types"
-import { useState, forwardRef, createContext, useImperativeHandle, useRef } from "react";
+import { useState, createContext } from "react";
 
 type CartProduct = {
     product: Product,
     count: number
 }
-//forwardref attempt
-/*const CartTest = ((), ref) => {
-    console.log("test")
-
-    return (
-        <div id="cart">Test</div>
-    )
-})
-
-export const Cart = forwardRef(CartTest);*/
 
 //context attempt
 /*
@@ -31,7 +21,7 @@ export const useCart = () => {
     const cartInit: CartProduct[] = [];
     const [cartContent, setCartContent] = useState([...cartInit]);
 
-    console.log("triggered")
+    console.log("triggered useCart")
 
     //alternatively useReducer could be used instead of copying arrays
     const addItem = (product: Product) => {
@@ -85,14 +75,9 @@ export const useCart = () => {
     return { cartContent, addItem, subtractItem, removeItem }
 }
 
-export type cartHandle = {
-    modCart: () => void;
-}
-type Props = object;
 
-const ShoppingCart = forwardRef ((props, ref) => {
+export default function ShoppingCart(){
     const [cartActive, setCartActive] = useState(false)
-    const cartRef = useRef(null);
     const cartHandler = () => {
         setCartActive(!cartActive)
 
@@ -109,20 +94,10 @@ const ShoppingCart = forwardRef ((props, ref) => {
     }
     let total = 0;
 
-    useImperativeHandle(ref, () => {
-        return {
-            useCart() {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                cartRef.current?.useCart();
-            }
-
-        }
-    });
-
     const cartContent = useCart().cartContent;
 
     return (
-        <div ref={cartRef} id="cart">
+        <div id="cart">
             <button onClick={cartHandler}><h3>Cart</h3></button>
             <section className={cartActive ? "cartActive" : "cartDisabled"}>
                 <ul>
@@ -147,5 +122,3 @@ const ShoppingCart = forwardRef ((props, ref) => {
     )
 
 })
-
-export default ShoppingCart;
