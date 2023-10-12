@@ -86,7 +86,7 @@ export const useCart = () => {
 }
 
 export type cartHandle = {
-    modCart: () => void;
+    editCart: () => void;
 }
 type Props = object;
 
@@ -111,9 +111,9 @@ const ShoppingCart = forwardRef ((props, ref) => {
 
     useImperativeHandle(ref, () => {
         return {
-            useCart() {
-                // eslint-disable-next-line @typescript-eslint/no-unsafe-call
-                cartRef.current?.useCart();
+            editCart() {
+                // eslint-disable-next-line react-hooks/rules-of-hooks
+                useCart();
             }
 
         }

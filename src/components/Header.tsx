@@ -9,7 +9,7 @@ export default function Home() {
 
 	function handleClick() {
 		// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-		cartRef.current?.useCart();
+		cartRef.current?.editCart();
 
 	}
 
