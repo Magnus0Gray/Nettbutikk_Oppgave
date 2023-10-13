@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import type { ReactNode } from "react" 
-import { type Product } from "../../../shared/types";
-import { type CartProduct, useCart } from "../../../components/Cart";
+import { type Product } from "../../shared/types";
+import { type CartProduct, useCart } from "../../components/Cart";
 
 //context
 type CartContextType = {

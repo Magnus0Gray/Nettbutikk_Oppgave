@@ -1,5 +1,5 @@
 "use client"
-import { useCartContext } from "../app/features/cart/CartContext";
+import { useCartContext } from "../features/cart/CartContext";
 import Cart from "../components/Cart"
 import Link from "next/link";
 
