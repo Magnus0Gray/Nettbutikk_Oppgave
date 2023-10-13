@@ -1,10 +1,15 @@
 "use client"
+import { useCartContext } from "../app/features/cart/CartContext";
 import Cart from "../components/Cart"
 import Link from "next/link";
 
 export default function Home() {
 
+	const { getProducts, addProduct } = useCartContext();
+
 	function handleClick() {
+
+		console.log(getProducts)
 		//cartRef.current?.useCart();
 
 	}

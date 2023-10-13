@@ -2,20 +2,12 @@
 "use client"
 
 import { type Product, getFullLabel } from "../shared/types"
-import { useState, createContext } from "react";
+import { useState } from "react";
 
-type CartProduct = {
+export type CartProduct = {
     product: Product,
     count: number
 }
-
-//context attempt
-/*
-const CartContext = createContext({});
-const CartProvider = ({ children, value }) => {
-    return <CartContext.Provider value={value}>{children}</CartContext.Provider>
-}*/
-export type UseCartHandle = () => void;
 
 export const useCart = () => {
     const cartInit: CartProduct[] = [];
