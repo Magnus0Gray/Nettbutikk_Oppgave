@@ -1,3 +1,5 @@
+"use client"
+
 import { createContext, useContext } from "react";
 import type { ReactNode } from "react" 
 import { type Product } from "../../shared/types";
@@ -10,7 +12,7 @@ type CartContextType = {
     addProduct: (product: Product) => void
 }
 
-const CartContext = createContext<CartContextType | undefined>(undefined,);
+const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider = (props: { children: ReactNode, currentProduct?: Product }) => {
     const { children, currentProduct } = props;

@@ -93,18 +93,18 @@ export default function ShoppingCart(){
             <button onClick={cartHandler}><h3>Cart</h3></button>
             <section className={cartActive ? "cartActive" : "cartDisabled"}>
                 <ul>
-                    {cartContent.length > 0
-                        ? cartContent.map((item) => (
+                    {cartContent.length > 0 
+                        ? (cartContent.map((item) => (
                             <li key={item.product.id}>
                                 <span className="title">{getFullLabel(item.product)}</span>
                                 <span className="price">{item.product.price},-</span>
                                 {total += item.product.price}
                             </li>
-                        ))
-                        :
-                        <li>
+                        )))
+                        : (<li>
                             Empty
-                        </li>}
+                          </li>)
+                    }
                 </ul>
                 <p>
                     Total <span id="carttotal">{total},-</span>
@@ -113,4 +113,4 @@ export default function ShoppingCart(){
         </div>
     )
 
-})
+}
