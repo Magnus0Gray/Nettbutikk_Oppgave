@@ -10,6 +10,8 @@ type CartContextType = {
     //currentProduct: Product
     getProducts: CartProduct[]
     addProduct: (product: Product) => void
+    subProduct: (product: Product) => void
+    removeProduct: (product: Product) => void
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);

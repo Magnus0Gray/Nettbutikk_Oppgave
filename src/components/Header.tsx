@@ -1,18 +1,8 @@
 "use client"
-import { useCartContext } from "../features/cart/CartContext";
 import Cart from "../components/Cart"
 import Link from "next/link";
 
 export default function Home() {
-
-	const { getProducts, addProduct } = useCartContext();
-
-	function handleClick() {
-
-		console.log(getProducts)
-		//cartRef.current?.useCart();
-
-	}
 
 	return (
 		<header>
@@ -20,7 +10,6 @@ export default function Home() {
 			<div className="cartContainer">
 				<Cart/>
 			</div>
-			<button type="button" onClick={handleClick}>testbutton</button>
 		</header>
 	)
 

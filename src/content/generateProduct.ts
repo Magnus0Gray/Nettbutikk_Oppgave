@@ -17,7 +17,15 @@ const prefixes: string[] = [
 	"Far too friendly",
 	"Spanish",
 	"Single",
-	"Caffeinated"
+	"Caffeinated",
+	"Strangely familiar",
+	"Genuine",
+	"Public",
+	"Exposed",
+	"Deconstructed",
+	"Far too moist",
+	"Most heretical",
+	"Concerned"
 ]
 
 const productNames: string[] = [
@@ -32,7 +40,17 @@ const productNames: string[] = [
 	"Nachos",
 	"Cheese",
 	"Moustache",
-	"Stranger"
+	"Stranger",
+	"Book",
+	"Didgeridoo",
+	"Witness",
+	"Comb-over",
+	"Speaker",
+	"Handbook",
+	"Guide",
+	"Pillow",
+	"VHS Tape",
+	"Mallet"
 ]
 
 const suffixes: string[] = [
@@ -47,6 +65,13 @@ const suffixes: string[] = [
 	" with added carbohydrates",
 	", definitely not cursed",
 	" (cotton wash only)",
+	" of hospitality",
+	", mostly intact",
+	" (manual missing)",
+	" of unknown origin",
+	" (Perfect in a casserole!)",
+	" with secret storage compartment",
+	", only a little bit moldy"
 ]
 
 const generateLabel = () => {
@@ -63,7 +88,8 @@ const categories: string[] = [
 	"Existential horror",
 	"Cute things",
 	"Consumable",
-	"Inconcievable"
+	"Inconcievable",
+
 ]
 
 const getRandomCategory = () => {

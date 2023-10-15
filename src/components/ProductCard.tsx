@@ -1,3 +1,4 @@
+import { useCartContext } from "../features/cart/CartContext";
 import { type Product, type AddToCart, getFullLabel } from "../shared/types"
 
 type ProductCardProps = {
@@ -6,14 +7,16 @@ type ProductCardProps = {
 }
 export default function ProductCard(props: ProductCardProps) {
 	//, addToCart: { addToCart: AddToCart }
-	//add button with onClick, use id to add to cart if not already present, add to count if present
 
-	/*const handleOnClick = () => {
-		console.log(addToCart)
-		//addToCart(props);
-	}*/
+	const { addProduct } = useCartContext();
 
-	//console.log(props.onClickHandler)
+
+	function handleClick() {
+		//console.log("buttonPressed")
+		addProduct(props.product)
+		//console.log(getProducts)
+	}
+
 
 	const { price, category, currency } = props.product;
 	return (
@@ -23,10 +26,13 @@ export default function ProductCard(props: ProductCardProps) {
 				<h2>{getFullLabel(props.product)}</h2>
 				<h4 className="price">Price: <br/>
 					{price}{currency}</h4>
+
+				<button onClick={handleClick}>Add to cart</button>
+				{/*
 				{props.onClickHandler
 					? <button onClick={() => props.onClickHandler?.(props.product)}>Add to cart</button>
 					: <div className="text-red-600">Sold out</div>
-				}
+				}*/}
 			</section>
 		</article>
 	)

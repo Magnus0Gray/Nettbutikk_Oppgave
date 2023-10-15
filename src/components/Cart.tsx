@@ -1,8 +1,9 @@
 /* eslint-disable react/display-name */
 "use client"
 
+import { useCartContext } from "../features/cart/CartContext";
 import { type Product, getFullLabel } from "../shared/types"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export type CartProduct = {
     product: Product,
@@ -13,7 +14,7 @@ export const useCart = () => {
     const cartInit: CartProduct[] = [];
     const [cartContent, setCartContent] = useState([...cartInit]);
 
-    console.log("triggered useCart")
+    //console.log("triggered useCart")
 
     //alternatively useReducer could be used instead of copying arrays
     const addItem = (product: Product) => {
@@ -29,7 +30,8 @@ export const useCart = () => {
             const incList: CartProduct[] = cartContent;
             //index should theoretically always match previous findIndex since incList is a direct copy, but some additional control might be in order for a real application, particularily with async operations
             incList[index].count++;
-            setCartContent(incList);
+            setCartContent(() => incList);
+            console.log("count added")
         }
 
     }
@@ -43,7 +45,7 @@ export const useCart = () => {
             if (subList[index].count >= 2)
                 subList[index].count--;
             else if (subList[index].count <= 1) //technically remove on 1 (as count would become 0) would be correct, but checking for lower numbers could help catching unforseen events where the count isn't what we expect and remove invalid content from the cart
-                subList.splice(index, 1); //mutating the array is typically a no-no, but sublist is a copy we are modifying, not the original array.
+                subList.splice(index, 1); //mutating the array directly is typically a no-no, but sublist is already a copy we are modifying, not the original array.
 
             setCartContent(subList);
         }
@@ -68,7 +70,7 @@ export const useCart = () => {
 }
 
 
-export default function ShoppingCart(){
+export default function ShoppingCart() {
     const [cartActive, setCartActive] = useState(false)
     const cartHandler = () => {
         setCartActive(!cartActive)
@@ -84,9 +86,22 @@ export default function ShoppingCart(){
                 cart.style.maxHeight = cart.offsetHeight.toString();
         }*/
     }
-    let total = 0;
 
-    const cartContent = useCart().cartContent;
+    //const cartContent = useCart().cartContent;
+
+    const { getProducts, addProduct, subProduct, removeProduct } = useCartContext();
+    const cartContent = getProducts;
+
+
+    let total = 0;
+    function addToTotal(value: number){
+        total += value;
+        return ""
+    }
+
+    useEffect(() => {
+        console.log("useEffect triggered")
+    }, [total, getProducts])
 
     return (
         <div id="cart">
@@ -95,10 +110,14 @@ export default function ShoppingCart(){
                 <ul>
                     {cartContent.length > 0 
                         ? (cartContent.map((item) => (
-                            <li key={item.product.id}>
-                                <span className="title">{getFullLabel(item.product)}</span>
+                            <li className="border-solid border-2 my-2 px-1 border-gray-100 rounded-sm" key={item.product.id}>
+                                <div className="flex flex-nowrap justify-between">
+                                    <button className=" text-xs text-center align-middle text-white bg-red-600 rounded-full w-4 h-4 font-extrabold my-auto clear-both">X</button>
+                                    <span className="title">{item.product.label.name}</span>
+                                    <span className="my-auto"><button className="text-orange-600 font-extrabold" >-</button><span className="m-0.5 bg-gray-200 rounded-sm px-1">{item.count}</span><button className="text-green-600 font-extrabold">+</button></span>
+                                </div>
                                 <span className="price">{item.product.price},-</span>
-                                {total += item.product.price}
+                                {addToTotal(item.product.price)}
                             </li>
                         )))
                         : (<li>

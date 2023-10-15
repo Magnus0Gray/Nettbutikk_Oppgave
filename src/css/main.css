@@ -95,15 +95,15 @@ main {
     font-weight: bold;
 }
 
+.title{
+    margin: 0.5rem;
+}
+
 .cartActive {
     overflow: visible;
     display: flex;
     flex-direction: column;
     margin: auto;
-}
-
-.cartActive ul li{
-    padding-top: 1rem;
 }
 
     .cartActive p {
