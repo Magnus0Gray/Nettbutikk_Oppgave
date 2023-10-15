@@ -99,9 +99,9 @@ export default function ShoppingCart() {
         return ""
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         console.log("useEffect triggered")
-    }, [total, getProducts])
+    }, [total, getProducts])*/
 
     return (
         <div id="cart">
