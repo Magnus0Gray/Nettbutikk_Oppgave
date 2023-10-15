@@ -1,4 +1,4 @@
-/* eslint-disable react/display-name */
+ 
 "use client"
 
 import { useCartContext } from "../features/cart/CartContext";
@@ -27,10 +27,10 @@ export const useCart = () => {
         }
         // copy list, modify, then set, to increment count by 1 if product already exists
         else {
-            const incList: CartProduct[] = cartContent;
+            const incList: CartProduct[] = [...cartContent];
             //index should theoretically always match previous findIndex since incList is a direct copy, but some additional control might be in order for a real application, particularily with async operations
             incList[index].count++;
-            setCartContent(() => incList);
+            setCartContent(incList);
             console.log("count added")
         }
 
@@ -41,7 +41,7 @@ export const useCart = () => {
 
         //return index -1 should not be possible, as the functionality to subtract should only be present to the user when items are 1 or more.
         if (index != -1) {
-            const subList: CartProduct[] = cartContent;
+            const subList: CartProduct[] = [...cartContent];
             if (subList[index].count >= 2)
                 subList[index].count--;
             else if (subList[index].count <= 1) //technically remove on 1 (as count would become 0) would be correct, but checking for lower numbers could help catching unforseen events where the count isn't what we expect and remove invalid content from the cart
@@ -56,7 +56,7 @@ export const useCart = () => {
     //Delete item from cart, regardless of count
     const removeItem = (product: Product) => {
         const index = findItem(product);
-        const delList = cartContent;
+        const delList = [...cartContent];
         delList.splice(index, 1);
         setCartContent(delList);
     }
@@ -112,12 +112,12 @@ export default function ShoppingCart() {
                         ? (cartContent.map((item) => (
                             <li className="border-solid border-2 my-2 px-1 border-gray-100 rounded-sm" key={item.product.id}>
                                 <div className="flex flex-nowrap justify-between">
-                                    <button className=" text-xs text-center align-middle text-white bg-red-600 rounded-full w-4 h-4 font-extrabold my-auto clear-both">X</button>
+                                    <button className=" text-xs text-center align-middle text-white bg-red-600 rounded-full w-4 h-4 font-extrabold my-auto clear-both" onClick={() => { removeProduct(item.product) }}>X</button>
                                     <span className="title">{item.product.label.name}</span>
-                                    <span className="my-auto"><button className="text-orange-600 font-extrabold" >-</button><span className="m-0.5 bg-gray-200 rounded-sm px-1">{item.count}</span><button className="text-green-600 font-extrabold">+</button></span>
+                                    <span className="my-auto"><button className="text-orange-600 font-extrabold" onClick={() => { subProduct(item.product) }}>-</button><span className="m-0.5 bg-gray-200 rounded-sm px-1">{item.count}</span><button className="text-green-600 font-extrabold" onClick={() => { addProduct(item.product) }}>+</button></span>
                                 </div>
-                                <span className="price">{item.product.price},-</span>
-                                {addToTotal(item.product.price)}
+                                <span className="price">{item.product.price * item.count},-</span>
+                                {addToTotal(item.product.price * item.count)}
                             </li>
                         )))
                         : (<li>

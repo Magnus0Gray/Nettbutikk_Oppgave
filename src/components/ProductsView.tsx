@@ -7,7 +7,14 @@ export default function ProductsView({addToCart}:{addToCart:AddToCart}) {
 	const [products, setProducts] = useState<Product[]>()
 
 	useEffect(() => {
-		setProducts(generateProducts(10));
+		const getProducts = async () => {
+			const response = await fetch("/api/products", {
+				method: "get"
+			})
+			const result = (await response.json()) as { data: Product[] }
+			setProducts(result.data);
+		}
+		void getProducts();
 	}, []);
 
 	/*const handleAddToCart = (product: Product) => {
