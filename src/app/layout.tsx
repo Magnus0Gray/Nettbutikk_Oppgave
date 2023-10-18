@@ -5,6 +5,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import Header from "../components/Header"
 import { CartProvider } from "../features/cart/CartContext"
+import Link from "next/link"
 
 
 const inter = Inter({ subsets: ["latin"] })
@@ -19,7 +20,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en">
           <body className={inter.className}>
               <CartProvider>
-                  <Header/>
+                  <Header />
+
                   <main className="md:flex" >{children}</main>
               </CartProvider>
           </body>

@@ -12,6 +12,8 @@ export default function Home() {
 	//alternative to custom hook with context
 	//const cartRef = useRef();
 
+
+	//no longer in use, replaced by context
 	const addToCart: AddToCart = function(product: Product){
 		console.log("triggered: ")
 		console.log(product)

@@ -52,7 +52,7 @@
 
 h1{
     padding: 2rem;
-    font-size: 24px;
+    font-size: 36px;
     font-weight: bold;
 }
 
@@ -70,6 +70,42 @@ main {
     right: 1rem;
 
     z-index: 1;
+}
+
+nav {
+    width: fit-content;
+    height: fit-content;
+    margin-top: 3rem;
+    font-weight: bolder;
+    display: flex;
+    align-content: center;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    padding: 0.5rem 1rem;
+    color:rgb(100,100,100);
+    gap: 1rem;
+}
+
+header{
+    display: flex;
+}
+
+.historyContainer{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.productList {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
 }
 
 #cart {
